@@ -36,7 +36,7 @@
   </head>
   <body>
     <div id="message">
-      <h2>Hola como</h2>
+      <h2>Hola como esta</h2>
       
       <h1>Firebase Hosting Setup Complete</h1>
       <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
@@ -69,10 +69,10 @@
         appId: "1:577427666180:web:048e25d46ba14509eccc51",
         measurementId: "G-J3BZG6VZLM"
       };
-      const messaging = firebase.messaging();
-  
+      
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
+      const messaging = firebase.messaging();
       if('serviceWorker' in navigator) { 
           navigator.serviceWorker.register('firebase-messaging-sw.js')
         .then(function(registration) {
