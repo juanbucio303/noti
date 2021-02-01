@@ -73,6 +73,7 @@
           console.log("Notification permission granted.");
 
           // get the token in the form of promise
+          console.log("return token");
           return messaging.getToken({vapidKey:"BECSRhhDl9SVZppjZowAauLqjhGeqhJwWrdxhhzF0T2hwFA4PbH97y6IB_lq7DKdOEutyRWEmbd2xFtmsvESw6k"})
         })
         .then(function(token) {
