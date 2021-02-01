@@ -6,18 +6,15 @@
     <title>Welcome to Firebase Hosting</title>
 
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
-
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-messaging.js"></script>
     
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -37,13 +34,7 @@
   <body>
     <div id="message">
       <h2>Hola como esta</h2>
-      
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-bsajkdbas
 
     <div id="token"></div>
     <div id="msg"></div>
@@ -73,70 +64,7 @@ bsajkdbas
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       const messaging = firebase.messaging();
-      if('serviceWorker' in navigator) { 
-          navigator.serviceWorker.register('firebase-messaging-sw.js')
-        .then(function(registration) {
-         console.log("Service Worker Registered");
-        messaging.useServiceWorker(registration);  
-          }); 
-      }
-
-      messaging
-        .requestPermission()
-        .then(function () {
-          MsgElem.innerHTML = "Notification permission granted." 
-          console.log("Notification permission granted.");
-        })
-        .catch(function (err) {
-        ErrElem.innerHTML = ErrElem.innerHTML + "; " + err
-        console.log("Unable to get permission to notify.", err);
-      });
-
-
-      messaging
-        .requestPermission()
-        .then(function () {
-          console.log("Have permission");
-          if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('firebase-messaging-sw.js')
-            .then(function(registration) {
-                console.log('Registration successful, scope is:', registration.scope);
-            }).catch(function(err) {
-                console.log('Service worker registration failed, error:', err);
-            });
-        }})
-
-      
-
-      messaging
-        .requestPermission()
-        .then(function () {
-          MsgElem.innerHTML = "Notification permission granted." 
-          console.log("Notification permission granted.");
-
-          // get the token in the form of promise
-          return messaging.getToken()
-        })
-        .then(function(token) {
-          // print the token on the HTML page
-          TokenElem.innerHTML = "token is : " + token
-        })
-        .catch(function (err) {
-        ErrElem.innerHTML = ErrElem.innerHTML + "; " + err
-        console.log("Unable to get permission to notify.", err);
-      });
-
-      messaging.setBackgroundMessageHandler(function(payload) {
-        console.log('[firebase-messaging-sw.js] Received background message ', payload);
-        // Customize notification here
-        const notificationTitle = 'Background Message Title';
-        const notificationOptions = {
-          body: 'Background Message body.'
-        };
-      
-        return self.registration.showNotification(notificationTitle,
-            notificationOptions);
-      });
+      console.log(messaging);
     </script>
     <script>
 
