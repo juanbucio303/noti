@@ -65,13 +65,18 @@
       firebase.initializeApp(firebaseConfig);
       const messaging = firebase.messaging();
       console.log("PEdimos permisos para las notificaciones");
-
       messaging
         .requestPermission()
         .then(function () {
           MsgElem.innerHTML = "Notification permission granted." 
           console.log("Notification permission granted.");
-
+          if('serviceWorker' in navigator) { 
+            navigator.serviceWorker.register('firebase-messaging-sw.js')
+          .then(function(registration) {
+              console.log("Service Worker Registered");
+              messaging.useServiceWorker(registration);  
+            }); 
+          }
           // get the token in the form of promise
           console.log("return token");
           return messaging.getToken({vapidKey:"BECSRhhDl9SVZppjZowAauLqjhGeqhJwWrdxhhzF0T2hwFA4PbH97y6IB_lq7DKdOEutyRWEmbd2xFtmsvESw6k"})
