@@ -86,6 +86,7 @@
             'performance',
           ].filter(feature => typeof app[feature] === 'function');
         } catch (e) {
+          console.log("este es el error");
           console.error(e);
         }
       });
