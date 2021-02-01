@@ -33,24 +33,34 @@
 
     const messaging = firebase.messaging();
 
-        messaging.requestPermission()
-        .then(function() {
-        console.log('Notification permission granted.');
-        return messaging.getToken();
+
+        messaging
+        .requestPermission()
+        .then(function () {
+          console.log("Notification permission granted.");
+
+          // get the token in the form of promise
+          return messaging.getToken()
         })
         .then(function(token) {
-        console.log(token); // Display user token
+          // print the token on the HTML page
+          console.log(token);
         })
-        .catch(function(err) { // Happen if user deney permission
-        console.log('Unable to get permission to notify.', err);
-        });
+        .catch(function (err) {
+        console.log("Unable to get permission to notify.", err);
+      });
 
-        messaging.onMessage(function(payload){
-            console.log('onMessage',payload);
-        })
-    
-    
-    
+      messaging.setBackgroundMessageHandler(function(payload) {
+        console.log('[firebase-messaging-sw.js] Received background message ', payload);
+        // Customize notification here
+        const notificationTitle = 'Background Message Title';
+        const notificationOptions = {
+          body: 'Background Message body.'
+        };
+      
+        return self.registration.showNotification(notificationTitle,
+            notificationOptions);
+      });
     </script>
     <h1>Hola</h1>
 </body>
