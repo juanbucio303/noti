@@ -75,29 +75,16 @@
           // get the token in the form of promise
           console.log("return token");
           return messaging.getToken({vapidKey:"BECSRhhDl9SVZppjZowAauLqjhGeqhJwWrdxhhzF0T2hwFA4PbH97y6IB_lq7DKdOEutyRWEmbd2xFtmsvESw6k"})
-        }).catch(function (err) {
-        console.log("Entra en el error");
-        ErrElem.innerHTML = ErrElem.innerHTML + "; " + err
-        console.log("Unable to get permission to notify.", err);
-      });
-      if('serviceWorker' in navigator) { 
-          navigator.serviceWorker.register('./firebase-messaging-sw.js')
-        .then(function(registration) {
-            console.log("Service Worker Registered");
-            messaging.useServiceWorker(registration);  
-          }); 
-        }
-
-        messaging.then(function(token) {
+        }).then(function(token) {
           console.log("Este es el Token", token);
           // print the token on the HTML page
           TokenElem.innerHTML = "token is : " + token
         })
         .catch(function (err) {
-        console.log("Entra en el error");
-        ErrElem.innerHTML = ErrElem.innerHTML + "; " + err
-        console.log("Unable to get permission to notify.", err);
-      });
+          console.log("Entra en el error");
+          ErrElem.innerHTML = ErrElem.innerHTML + "; " + err
+          console.log("Unable to get permission to notify.", err);
+        });
 
 
     </script>
@@ -106,6 +93,13 @@
         
 
       document.addEventListener('DOMContentLoaded', function() {
+        if('serviceWorker' in navigator) { 
+          navigator.serviceWorker.register('./firebase-messaging-sw.js')
+        .then(function(registration) {
+            console.log("Service Worker Registered");
+            messaging.useServiceWorker(registration);  
+          }); 
+        }
         const loadEl = document.querySelector('#load');
         try {
           let app = firebase.app();
